@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateUser } from "./UserReducer";
 
-
 function Update() {
   const { id } = useParams();
   const users = useSelector((state) => state.users);
@@ -11,18 +10,20 @@ function Update() {
   const { name, email } = existingUser[0];
   const [uname, setName] = useState(name);
   const [uemail, setEmail] = useState(email);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleUpdate = event => {
-    event.preventDefault()
-    dispatch(updateUser({
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    dispatch(
+      updateUser({
         id: id,
         name: uname,
-        email: uemail
-    }))
-    navigate('/')
-  }
+        email: uemail,
+      })
+    );
+    navigate("/");
+  };
 
   return (
     <div className="d-flex w-100 vh-100 justify-content-center align-items-center">
@@ -38,7 +39,7 @@ function Update() {
               placeholder="Eg. Natnael Badigo"
               autoComplete="hidden"
               value={uname}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div>
@@ -50,7 +51,7 @@ function Update() {
               placeholder="Eg. natibadigo@gmail.com"
               autoComplete="hidden"
               value={uemail}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <br />

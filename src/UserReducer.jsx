@@ -6,18 +6,25 @@ const userSlice = createSlice({
   initialState: userList,
   reducers: {
     addUser: (state, action) => {
-      state.push(action.payload)
+      state.push(action.payload);
     },
     updateUser: (state, action) => {
-        const {id, name, email} = action.payload
-        const updatedUser = state.find(user => user.id == id)
-        if (updatedUser) {
-            updatedUser.name = name;
-            updatedUser.email = email;
-        }
-    }
+      const { id, name, email } = action.payload;
+      const updatedUser = state.find((user) => user.id == id);
+      if (updatedUser) {
+        updatedUser.name = name;
+        updatedUser.email = email;
+      }
+    },
+    deleteUser: (state, action) => {
+      const { id } = action.payload;
+      const deleteUser = state.find((user) => user.id == id);
+      if (deleteUser) {
+        return state.filter((f) => f.id !== id);
+      }
+    },
   },
 });
 
-export const { addUser, updateUser } = userSlice.actions;
+export const { addUser, updateUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;
